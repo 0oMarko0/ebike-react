@@ -1,0 +1,16 @@
+language: node_js
+node_js: node
+cache:
+  directories:
+    - node_modules
+install:
+  - yarn install
+jobs:
+  include:
+    - stage: 'Tests'
+      name: 'Unit Test'
+      script: yarn test
+    - stage: 'Deploy'
+      if: branch = master
+      script: yarn build && yarn deploy
+
