@@ -11,6 +11,7 @@ jobs:
       name: 'Unit Test'
       script: yarn test
     - stage: 'Deploy'
+      name: 'Deployment To S3'
       if: branch = master
       script: yarn build && yarn deploy
 
