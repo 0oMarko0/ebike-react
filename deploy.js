@@ -82,6 +82,8 @@ module.exports = async function() {
             console.log(`Uploading file: ${fileLists[i]}`.green);
             await uploadFileToS3(fileLists[i]);
         }
+
+        console.log(`Deployment completed on: http://client-ebike.s3-website-us-east-1.amazonaws.com/`)
     } else {
         console.log('No build have been found, skipping deployment'.red);
         console.log('Try running: yarn build'.red);
