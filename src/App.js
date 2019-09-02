@@ -1,23 +1,22 @@
 import React from 'react';
 import './App.scss';
-import MainHeader from './components/header/MainHeader';
-
 import { Route, Switch } from 'react-router-dom';
-import { Content } from 'carbon-components-react';
 
 import HomePage from './pages/home/Home';
 import ExamplePage from './pages/example/Example';
+import ContentContainer from './containers/content/ContentContainer';
+import MainHeaderContainer from './containers/header/HeaderContainer';
 
 function App() {
   return (
       <div>
-          <MainHeader />
-          <Content>
+          <MainHeaderContainer />
+          <ContentContainer>
               <Switch>
                   <Route path="/home" component={HomePage}/>
                   <Route path="/example" component={ExamplePage}/>
               </Switch>
-          </Content>
+          </ContentContainer>
       </div>
   );
 }

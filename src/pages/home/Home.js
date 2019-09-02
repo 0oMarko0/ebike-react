@@ -1,5 +1,5 @@
 import React from 'react';
-import { SkeletonText } from 'carbon-components-react';
+import {SkeletonText} from 'carbon-components-react';
 
 export default class HomePage extends React.Component {
     render() {
