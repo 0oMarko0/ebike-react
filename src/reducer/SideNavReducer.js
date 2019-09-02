@@ -4,7 +4,7 @@ const initialState = {
     isSideNavExpanded: false,
 };
 
-export default (state = initialState, action) => {
+export const sideNavReducer = (state = initialState, action) => {
     switch (action.type) {
         case TOGGLE_SIDE_NAV: {
             const {isSideNavExpanded} = action.payload;
@@ -17,4 +17,4 @@ export default (state = initialState, action) => {
             return state
         }
     }
-}
+};

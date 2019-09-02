@@ -5,7 +5,7 @@ import {
     HeaderName,
     SkipToContent
 } from 'carbon-components-react';
-import MainSideNav from '../../components/side-nav/SideNav';
+import MainSideNav from '../../components/side-nav/MainSideNav';
 import {connect} from 'react-redux';
 import {toggleSideNav} from '../../action/SideNavAction';
 

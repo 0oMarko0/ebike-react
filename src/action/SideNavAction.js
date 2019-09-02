@@ -7,7 +7,6 @@ export const toggleSideNav = (isSideNavExpanded) => ({
     }
 });
 
-export const getSideNavState = store => {
-    return store.sideNavReducer.isSideNavExpanded;
+export const getSideNavState = state => {
+    return state.sideNavReducer.isSideNavExpanded;
 };
-
