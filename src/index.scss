@@ -1,3 +1,14 @@
+$feature-flags: (
+        ui-shell: true,
+        grid-columns-16: true
+);
+
+@import '../node_modules/@carbon/themes/scss/themes';
+@include carbon--theme($carbon--theme--g100);
+
+@import "~carbon-components/scss/globals/scss/styles.scss";
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
