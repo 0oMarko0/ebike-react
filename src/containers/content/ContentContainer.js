@@ -16,9 +16,9 @@ class ContentContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    isSideNavExpanded: getSideNavState(state)
+    isSideNavExpanded: getSideNavState(state),
 });
 
 export default connect(
     mapStateToProps,
-    null)(ContentContainer)
+    null)(ContentContainer);

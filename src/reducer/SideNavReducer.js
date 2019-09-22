@@ -1,4 +1,4 @@
-import { TOGGLE_SIDE_NAV } from '../action/SideNavAction';
+import {TOGGLE_SIDE_NAV} from '../action/SideNavAction';
 
 const initialState = {
     isSideNavExpanded: false,
@@ -10,11 +10,11 @@ export const sideNavReducer = (state = initialState, action) => {
             const {isSideNavExpanded} = action.payload;
             return {
                 ...state,
-                isSideNavExpanded
-            }
+                isSideNavExpanded,
+            };
         }
         default: {
-            return state
+            return state;
         }
     }
 };

@@ -36,8 +36,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
-    "deploy": "node deploy.js",
-    "local": "node server.js"
+    "deploy": "node deploy.js"
   },
   "eslintConfig": {
     "extends": "react-app"

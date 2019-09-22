@@ -4,22 +4,22 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
-import { HashRouter as Router } from 'react-router-dom';
+import {HashRouter as Router} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
-import '../node_modules/core-js/modules/es.array.includes'
-import '../node_modules/core-js/modules/es.array.fill'
-import '../node_modules/core-js/modules/es.string.includes'
-import '../node_modules/core-js/modules/es.string.trim'
-import '../node_modules/core-js/modules/es.object.values'
+import '../node_modules/core-js/modules/es.array.includes';
+import '../node_modules/core-js/modules/es.array.fill';
+import '../node_modules/core-js/modules/es.string.includes';
+import '../node_modules/core-js/modules/es.string.trim';
+import '../node_modules/core-js/modules/es.object.values';
 
 ReactDOM.render(
     <Provider store={store}>
         <Router>
-            <App />
+            <App/>
         </Router>
     </Provider>
-, document.getElementById('root'));
+    , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -3,8 +3,8 @@ export const TOGGLE_SIDE_NAV = 'TOGGLE_SIDE_NAV';
 export const toggleSideNav = (isSideNavExpanded) => ({
     type: TOGGLE_SIDE_NAV,
     payload: {
-        isSideNavExpanded
-    }
+        isSideNavExpanded,
+    },
 });
 
 export const getSideNavState = state => {

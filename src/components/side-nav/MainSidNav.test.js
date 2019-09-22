@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import {shallow} from 'enzyme';
 import MainSideNav from './MainSideNav';
 import {SideNav, SideNavLink} from 'carbon-components-react';
 

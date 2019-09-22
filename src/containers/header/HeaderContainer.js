@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    Header,
-    HeaderMenuButton,
-    HeaderName,
-    SkipToContent
-} from 'carbon-components-react';
+import {Header, HeaderMenuButton, HeaderName, SkipToContent} from 'carbon-components-react';
 import MainSideNav from '../../components/side-nav/MainSideNav';
 import {connect} from 'react-redux';
 import {toggleSideNav} from '../../action/SideNavAction';
@@ -26,13 +21,13 @@ class MainHeaderContainer extends React.Component {
     }
 
     updateWindowDimensions = () => {
-        this.setState({ width: window.innerWidth });
+        this.setState({width: window.innerWidth});
         if (window.innerWidth > 1055) {
             this.props.toggleSideNav(true);
-            this.setState({isSideNavExpanded: true})
+            this.setState({isSideNavExpanded: true});
         } else {
             this.props.toggleSideNav(false);
-            this.setState({isSideNavExpanded: false})
+            this.setState({isSideNavExpanded: false});
         }
     };
 
@@ -45,7 +40,7 @@ class MainHeaderContainer extends React.Component {
         return (
             <>
                 <Header aria-label="IBM Platform Name">
-                    <SkipToContent />
+                    <SkipToContent/>
                     <HeaderMenuButton
                         aria-label="Open menu"
                         onClick={this.onClick}
@@ -63,10 +58,10 @@ class MainHeaderContainer extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-   toggleSideNav: (isSideNavExpanded) => dispatch(toggleSideNav(isSideNavExpanded))
+    toggleSideNav: (isSideNavExpanded) => dispatch(toggleSideNav(isSideNavExpanded)),
 });
 
 export default connect(
     null,
-    mapDispatchToProps)(MainHeaderContainer)
+    mapDispatchToProps)(MainHeaderContainer);
 

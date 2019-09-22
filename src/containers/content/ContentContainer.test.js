@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import {shallow} from 'enzyme';
 import ContentContainer from './ContentContainer';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
@@ -25,5 +25,5 @@ test('should render children', () => {
             </ContentContainer>
         </Provider>);
 
-   expect(wrapper.contains(<h1>test</h1>)).toBe(true);
+    expect(wrapper.contains(<h1>test</h1>)).toBe(true);
 });

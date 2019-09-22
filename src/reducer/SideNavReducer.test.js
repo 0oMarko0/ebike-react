@@ -4,16 +4,16 @@ import {TOGGLE_SIDE_NAV} from '../action/SideNavAction';
 test('should return the initial state', () => {
     expect(sideNavReducer(undefined, {})).toEqual(
         {
-            isSideNavExpanded: false
-        }
+            isSideNavExpanded: false,
+        },
     );
 });
 
 test('should handle TOGGLE_SIDE_NAV', () => {
-   expect(sideNavReducer({}, {
-       type: TOGGLE_SIDE_NAV,
-       payload: {
-           isSideNavExpanded: true
-       }
-   })).toEqual({isSideNavExpanded: true});
+    expect(sideNavReducer({}, {
+        type: TOGGLE_SIDE_NAV,
+        payload: {
+            isSideNavExpanded: true,
+        },
+    })).toEqual({isSideNavExpanded: true});
 });
