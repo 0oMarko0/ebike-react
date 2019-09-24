@@ -10,9 +10,7 @@ export default class MainSideNav extends React.Component {
                 expanded={this.props.isSideNavExpanded}
                 isPersistent={false}>
                 <SideNavItems>
-                    <SideNavLink element={Link} to="/auth">
-                        Login
-                    </SideNavLink>
+                    {!this.props.isAuthenticated ? <this.NotAuthenticated/> : <this.Authenticated/>}
                     <SideNavLink element={Link} to="/home">
                         Home
                     </SideNavLink>
@@ -23,4 +21,19 @@ export default class MainSideNav extends React.Component {
             </SideNav>
         );
     }
+
+    NotAuthenticated = () => {
+        return (
+            <SideNavLink element={Link} to="/auth">
+                Login
+            </SideNavLink>);
+    };
+
+    Authenticated = () => {
+        return (
+            <SideNavLink onClick={this.props.logout}>
+                Logout
+            </SideNavLink>);
+    };
+
 }

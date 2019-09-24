@@ -1,5 +1,5 @@
 import {sideNavReducer} from './SideNavReducer';
-import {TOGGLE_SIDE_NAV} from '../action/SideNavAction';
+import {TOGGLE_SIDE_NAV} from '../../action/side-nav/SideNavAction';
 
 test('should return the initial state', () => {
     expect(sideNavReducer(undefined, {})).toEqual(

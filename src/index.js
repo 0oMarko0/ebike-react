@@ -13,6 +13,9 @@ import '../node_modules/core-js/modules/es.string.includes';
 import '../node_modules/core-js/modules/es.string.trim';
 import '../node_modules/core-js/modules/es.object.values';
 
+require('dotenv').config();
+
+
 ReactDOM.render(
     <Provider store={store}>
         <Router>

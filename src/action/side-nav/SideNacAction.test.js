@@ -1,10 +1,11 @@
 import {getSideNavState, TOGGLE_SIDE_NAV, toggleSideNav} from './SideNavAction';
 import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 
-const middlewares = [];
+const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
-test('should create a action for toggle side nav', () => {
+test('should create an action for toggle side nav', () => {
     const expectedAction = {
         type: TOGGLE_SIDE_NAV,
         payload: {

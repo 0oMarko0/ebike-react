@@ -1,4 +1,4 @@
-import {TOGGLE_SIDE_NAV} from '../action/SideNavAction';
+import {TOGGLE_SIDE_NAV} from '../../action/side-nav/SideNavAction';
 
 const initialState = {
     isSideNavExpanded: false,
