@@ -4,7 +4,7 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
-import {HashRouter as Router} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../node_modules/core-js/modules/es.array.includes';
@@ -18,9 +18,9 @@ require('dotenv').config();
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router>
+        <BrowserRouter>
             <App/>
-        </Router>
+        </BrowserRouter>
     </Provider>
     , document.getElementById('root'));
 

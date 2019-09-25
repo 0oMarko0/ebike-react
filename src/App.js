@@ -9,6 +9,7 @@ import AuthenticationPage from './pages/authentication/Auth';
 import api from './service/api';
 import store from './store';
 import {setCurrentUser} from './action/auth/AuthAction';
+import {Routes} from './utils/Routes';
 
 
 class App extends React.Component {
@@ -26,9 +27,9 @@ class App extends React.Component {
                 <MainHeaderContainer/>
                 <ContentContainer>
                     <Switch>
-                        <Route path="/home" component={HomePage}/>
-                        <Route path="/auth" component={AuthenticationPage}/>
-                        <Route path="/example" component={ExamplePage}/>
+                        <Route path={Routes.HOME} component={HomePage}/>
+                        <Route path={Routes.AUTH} component={AuthenticationPage}/>
+                        <Route path={Routes.EXAMPLE} component={ExamplePage}/>
                     </Switch>
                 </ContentContainer>
             </div>

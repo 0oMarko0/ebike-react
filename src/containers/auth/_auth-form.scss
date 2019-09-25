@@ -1,4 +1,5 @@
 .auth-form__tile {
+  padding-bottom: 0;
   max-width: 575px;
 }
 
@@ -8,4 +9,8 @@
 
 .auth-form__header {
   margin-bottom: $spacing-05 * 3;
+}
+
+.auth-form__submit-btn {
+  width: calc(50%);
 }

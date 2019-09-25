@@ -1,8 +1,9 @@
 import React from 'react';
 import {SideNav, SideNavItems, SideNavLink} from 'carbon-components-react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
+import {Routes} from '../../utils/Routes';
 
-export default class MainSideNav extends React.Component {
+class MainSideNav extends React.Component {
     render() {
         return (
             <SideNav
@@ -11,10 +12,10 @@ export default class MainSideNav extends React.Component {
                 isPersistent={false}>
                 <SideNavItems>
                     {!this.props.isAuthenticated ? <this.NotAuthenticated/> : <this.Authenticated/>}
-                    <SideNavLink element={Link} to="/home">
+                    <SideNavLink element={Link} to={Routes.HOME}>
                         Home
                     </SideNavLink>
-                    <SideNavLink element={Link} to="/example">
+                    <SideNavLink element={Link} to={Routes.EXAMPLE}>
                         Example
                     </SideNavLink>
                 </SideNavItems>
@@ -24,16 +25,22 @@ export default class MainSideNav extends React.Component {
 
     NotAuthenticated = () => {
         return (
-            <SideNavLink element={Link} to="/auth">
+            <SideNavLink element={Link} to={Routes.AUTH}>
                 Login
             </SideNavLink>);
     };
 
     Authenticated = () => {
         return (
-            <SideNavLink onClick={this.props.logout}>
+            <SideNavLink onClick={this.onLogout}>
                 Logout
             </SideNavLink>);
     };
 
+    onLogout = () => {
+        this.props.logout();
+        this.props.history.push(Routes.AUTH);
+    }
 }
+
+export default withRouter(MainSideNav);
