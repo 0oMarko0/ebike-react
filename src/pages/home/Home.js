@@ -1,7 +1,5 @@
 import React from 'react';
-import {SkeletonText} from 'carbon-components-react';
 import PageHeader from '../../components/page-header/PageHeader';
-import AuthForm from '../../containers/auth/AuthForm';
 import {Routes} from '../../utils/Routes';
 
 export default class HomePage extends React.Component {

@@ -14,17 +14,18 @@ class AuthForm extends React.Component {
         className: 'auth-form__input',
         labelText: 'Email Address',
         placeholder: 'johnDoe@email.com',
-        onChange: (event) => this.handleEmailChange(event),
+        onChange: () => this.handleFormChange(),
     };
 
     passwordProps = {
         id: this.passwordId,
         className: 'auth-form__input',
         labelText: 'Password',
-        onChange: (event) => this.handlePasswordChange(event),
+        onChange: () => this.handleFormChange(),
     };
 
     loginButton = {
+        disabled: true,
         onClick: e => {
             e.preventDefault();
             this.submitValueLogin();
@@ -32,6 +33,7 @@ class AuthForm extends React.Component {
     };
 
     registerButton = {
+        disabled: true,
         onClick: e => {
             e.preventDefault();
             this.submitValueSignup();
@@ -40,9 +42,7 @@ class AuthForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {email: '', password: '', isDisabled: true};
-        this.registerButton.disabled = this.state.isDisabled;
-        this.loginButton.disabled = this.state.isDisabled;
+        this.state = {email: '', password: ''};
     }
 
     render() {
@@ -65,13 +65,17 @@ class AuthForm extends React.Component {
 
     loadingForm = () => {
         return (
-            <Form>
-                <TextInputSkeleton/>
-                <TextInputSkeleton/>
-                <Button type="submit" disabled={true}>
-                    Submit
-                </Button>
-            </Form>
+            <div>
+                <h2 className="auth-form__header">Authenticate</h2>
+                <Form>
+                    <div className="auth-form__header">
+                        <TextInputSkeleton/>
+                    </div>
+                    <div className="auth-form__header">
+                        <TextInputSkeleton/>
+                    </div>
+                </Form>
+            </div>
         );
     };
 
@@ -93,6 +97,21 @@ class AuthForm extends React.Component {
         );
     };
 
+    isFormEmpty() {
+        const value = this.getFormValue();
+        return !(value.password.length > 0 && value.email.length > 0);
+    };
+
+    handleFormChange() {
+        this.setButtonState(this.isFormEmpty());
+        this.forceUpdate();
+    };
+
+    setButtonState(state) {
+        this.registerButton.disabled = state;
+        this.loginButton.disabled = state;
+    };
+
     submitValueSignup() {
         this.props.signup(this.getFormValue(), this.props.history);
     }
@@ -100,28 +119,6 @@ class AuthForm extends React.Component {
     submitValueLogin() {
         this.props.login(this.getFormValue(), this.props.history);
     }
-
-    handleEmailChange = (e) => {
-        this.setState({email: e.target.value}, () => this.manageButtonState());
-    };
-
-    handlePasswordChange = (e) => {
-        this.setState({password: e.target.value}, () => this.manageButtonState());
-    };
-
-    manageButtonState = () => {
-        console.log(this.state);
-        if (this.state.email === '' || this.state.password === '') {
-            this.setState({isDisabled: true}, () => this.setButtonState());
-        } else {
-            this.setState({isDisabled: false}, () => this.setButtonState());
-        }
-    };
-
-    setButtonState = () => {
-        this.registerButton.disabled = this.state.isDisabled;
-        this.loginButton.disabled = this.state.isDisabled;
-    };
 
     getFormValue() {
         return {

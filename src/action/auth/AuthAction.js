@@ -15,6 +15,7 @@ export const login = ({email, password}, history) => {
         loginUser({email, password}).then((response) => {
             authentication(dispatch, response, history);
         }).catch((error) => {
+            dispatch(loading(false));
             console.log(error);
         });
     };
@@ -32,7 +33,7 @@ export const signup = ({email, password}, history) => {
     };
 };
 
-const authentication = (dispatch, response, history) => {
+export const authentication = (dispatch, response, history) => {
     const {token} = response.data;
     localStorage.setItem('token', token);
     api.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`;
@@ -40,7 +41,7 @@ const authentication = (dispatch, response, history) => {
     dispatch(setAuthentication(true));
     dispatch(loading(false));
     history.push(Routes.HOME)
-}
+};
 
 export const setAuthentication = (isAuthenticated) => {
     return {
@@ -51,8 +52,9 @@ export const setAuthentication = (isAuthenticated) => {
     }
 };
 
-export const logout = () => {
+export const logout = (history) => {
     localStorage.removeItem('token');
+    history.push(Routes.AUTH);
     return {
         type:LOGOUT_USER
     }

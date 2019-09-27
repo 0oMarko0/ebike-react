@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 import HomePage from './pages/home/Home';
 import ExamplePage from './pages/example/Example';
 import ContentContainer from './containers/content/ContentContainer';
@@ -18,6 +18,9 @@ class App extends React.Component {
             const token = localStorage.getItem('token');
             api.defaults.headers.common['Authorization'] = `bearer ${token}`;
             store.dispatch(setCurrentUser(token));
+        } else {
+            console.log('here')
+            this.props.history.push(Routes.HOME);
         }
     }
 
@@ -37,4 +40,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default withRouter(App);

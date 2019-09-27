@@ -9,7 +9,7 @@ const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 test('should renders without crashing', () => {
-    const store = mockStore({});
+    const store = mockStore({isLoading: false});
     shallow(<Provider store={store}>
         <AuthForm/>
     </Provider>);

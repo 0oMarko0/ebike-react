@@ -66,7 +66,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    logout: () => dispatch(logout()),
+    logout: (history) => dispatch(logout(history)),
     toggleSideNav: (isSideNavExpanded) => dispatch(toggleSideNav(isSideNavExpanded)),
 });
 

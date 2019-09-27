@@ -38,7 +38,7 @@ class MainSideNav extends React.Component {
     };
 
     onLogout = () => {
-        this.props.logout();
+        this.props.logout(this.props.history);
         this.props.history.push(Routes.AUTH);
     }
 }
