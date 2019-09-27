@@ -1,13 +1,9 @@
 import React from 'react';
-import {
-    Header,
-    HeaderMenuButton,
-    HeaderName,
-    SkipToContent
-} from 'carbon-components-react';
+import {Header, HeaderMenuButton, HeaderName, SkipToContent} from 'carbon-components-react';
 import MainSideNav from '../../components/side-nav/MainSideNav';
 import {connect} from 'react-redux';
-import {toggleSideNav} from '../../action/SideNavAction';
+import {toggleSideNav} from '../../action/side-nav/SideNavAction';
+import {getAdminState, getAuthenticatedState, logout} from '../../action/auth/AuthAction';
 
 class MainHeaderContainer extends React.Component {
 
@@ -26,13 +22,13 @@ class MainHeaderContainer extends React.Component {
     }
 
     updateWindowDimensions = () => {
-        this.setState({ width: window.innerWidth });
+        this.setState({width: window.innerWidth});
         if (window.innerWidth > 1055) {
             this.props.toggleSideNav(true);
-            this.setState({isSideNavExpanded: true})
+            this.setState({isSideNavExpanded: true});
         } else {
             this.props.toggleSideNav(false);
-            this.setState({isSideNavExpanded: false})
+            this.setState({isSideNavExpanded: false});
         }
     };
 
@@ -45,7 +41,7 @@ class MainHeaderContainer extends React.Component {
         return (
             <>
                 <Header aria-label="IBM Platform Name">
-                    <SkipToContent />
+                    <SkipToContent/>
                     <HeaderMenuButton
                         aria-label="Open menu"
                         onClick={this.onClick}
@@ -55,18 +51,26 @@ class MainHeaderContainer extends React.Component {
                     <HeaderName href="#" prefix="E-BIKE">
                         [Platform]
                     </HeaderName>
-                    <MainSideNav isSideNavExpanded={this.state.isSideNavExpanded}/>
+                    <MainSideNav logout={this.props.logout} isAuthenticated={this.props.isAuthenticated} isAdmin={this.props.isAdmin} isSideNavExpanded={this.state.isSideNavExpanded}/>
                 </Header>
             </>
         );
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        isAdmin: getAdminState(state),
+        isAuthenticated: getAuthenticatedState(state)
+    }
+};
+
 const mapDispatchToProps = dispatch => ({
-   toggleSideNav: (isSideNavExpanded) => dispatch(toggleSideNav(isSideNavExpanded))
+    logout: (history) => dispatch(logout(history)),
+    toggleSideNav: (isSideNavExpanded) => dispatch(toggleSideNav(isSideNavExpanded)),
 });
 
 export default connect(
-    null,
-    mapDispatchToProps)(MainHeaderContainer)
+    mapStateToProps,
+    mapDispatchToProps)(MainHeaderContainer);
 

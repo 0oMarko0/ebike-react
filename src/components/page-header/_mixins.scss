@@ -1,0 +1,15 @@
+@mixin page-header-background() {
+  background-color: $ui-01;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -$spacing-05 * 4;
+    top: -$spacing-05 * 2;
+    right: -$spacing-05 * 4;
+    bottom: 0;
+    background: $ui-01;
+    z-index: -1;
+  }
+}

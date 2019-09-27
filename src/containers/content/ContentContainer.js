@@ -3,7 +3,7 @@ import './_content-container.scss';
 import classNames from 'classnames';
 import {Content} from 'carbon-components-react';
 import {connect} from 'react-redux';
-import {getSideNavState} from '../../action/SideNavAction';
+import {getSideNavState} from '../../action/side-nav/SideNavAction';
 
 class ContentContainer extends React.Component {
     render() {
@@ -16,9 +16,9 @@ class ContentContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    isSideNavExpanded: getSideNavState(state)
+    isSideNavExpanded: getSideNavState(state),
 });
 
 export default connect(
     mapStateToProps,
-    null)(ContentContainer)
+    null)(ContentContainer);

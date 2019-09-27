@@ -1,12 +1,19 @@
 import React from 'react';
-import {SkeletonText} from 'carbon-components-react';
+import PageHeader from '../../components/page-header/PageHeader';
+import {Routes} from '../../utils/Routes';
 
 export default class HomePage extends React.Component {
     render() {
+        const breadcrumb = [
+            {
+                link: Routes.HOME,
+                name: "Home"
+            }
+        ];
+
         return (
-            <div>
-                <h1>Home Page</h1>
-                <SkeletonText />
+            <div className="bx--grid bx--grid--full-width">
+                <PageHeader title="Home" breadcrumb={breadcrumb}/>
             </div>
         );
     }

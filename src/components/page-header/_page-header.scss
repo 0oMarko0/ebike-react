@@ -1,0 +1,7 @@
+@import "mixins.scss";
+
+.page-header__banner {
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-07 * 2;
+  @include page-header-background;
+}

@@ -1,16 +1,16 @@
 import React from 'react';
 import {shallow} from 'enzyme';
+import AuthForm from './AuthForm';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
-import HeaderContainer from './HeaderContainer';
+import thunk from 'redux-thunk';
 
-const middlewares = [];
+const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 test('should renders without crashing', () => {
-    const store = mockStore({});
+    const store = mockStore({isLoading: false});
     shallow(<Provider store={store}>
-        <HeaderContainer/>
+        <AuthForm/>
     </Provider>);
 });
-
