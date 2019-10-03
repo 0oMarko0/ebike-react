@@ -3,6 +3,7 @@ import {loginUser, signupUser} from '../../service/auth';
 import api from '../../service/api';
 import {loading} from '../loading/LoadingAction';
 import {Routes} from '../../utils/Routes';
+import {pushError, pushSuccess} from '../toast/ToastAction';
 
 export const SIGNUP_USER = 'SIGNUP_USER';
 export const LOGIN_USER = 'LOGIN_USER';
@@ -14,9 +15,10 @@ export const login = ({email, password}, history) => {
     return (dispatch) => {
         loginUser({email, password}).then((response) => {
             authentication(dispatch, response, history);
+            dispatch(pushSuccess('Welcome to Ebike', 'Successfully login'))
         }).catch((error) => {
             dispatch(loading(false));
-            console.log(error);
+            dispatch(pushError(error.message));
         });
     };
 };
@@ -26,9 +28,10 @@ export const signup = ({email, password}, history) => {
         dispatch(loading(true));
         signupUser({email, password}).then((response) => {
             authentication(dispatch, response, history);
+            dispatch(pushSuccess('Welcome to Ebike', 'Successfully signup'))
         }).catch((error) => {
             dispatch(loading(false));
-            console.log(error);
+            dispatch(pushError(error));
         });
     };
 };
@@ -53,10 +56,14 @@ export const setAuthentication = (isAuthenticated) => {
 };
 
 export const logout = (history) => {
-    localStorage.removeItem('token');
-    history.push(Routes.AUTH);
-    return {
-        type:LOGOUT_USER
+    return (dispatch) => {
+        localStorage.removeItem('token');
+        dispatch({
+            type:LOGOUT_USER
+        });
+
+        dispatch(pushSuccess('Goodbye', 'Successfully logout'));
+        history.push(Routes.AUTH);
     }
 };
 
