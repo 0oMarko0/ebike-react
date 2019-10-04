@@ -20,13 +20,13 @@ export default class HomePage extends React.Component {
                         <InfoTile title={"Number of restaurants"} content={45}/>
                     </div>
                     <div className="bx--col-md-4 bx--col-lg-4 home_row-container">
-                        <InfoTile title={"Number of kilometers of bike path"} content={45}/>
+                        <InfoTile title={"Bike path - (Km)"} content={45} />
                     </div>
                     <div className="bx--col-md-4 bx--col-lg-4 home_row-container">
                         <InfoTile title={"Active User"} content={100}/>
                     </div>
                     <div className="bx--col-md-4 bx--col-lg-4 home_row-container">
-                        <InfoTile title={"Nb of restaurants"} content={45}/>
+                        <InfoTile title={"Total of User"} content={45}/>
                     </div>
                 </div>
             </div>

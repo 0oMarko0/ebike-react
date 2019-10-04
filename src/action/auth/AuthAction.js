@@ -3,6 +3,7 @@ import {loginUser, signupUser} from '../../service/auth';
 import api from '../../service/api';
 import {loading} from '../loading/LoadingAction';
 import {Routes} from '../../utils/Routes';
+import {getHeartbeat} from '../heartbeat/HeartbeatAction';
 
 export const SIGNUP_USER = 'SIGNUP_USER';
 export const LOGIN_USER = 'LOGIN_USER';
@@ -39,6 +40,7 @@ export const authentication = (dispatch, response, history) => {
     api.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`;
     dispatch(setCurrentUser(token));
     dispatch(setAuthentication(true));
+    dispatch(getHeartbeat());
     dispatch(loading(false));
     history.push(Routes.HOME)
 };
