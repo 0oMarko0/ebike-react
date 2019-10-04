@@ -3,10 +3,12 @@ import {sideNavReducer} from './side-nav/SideNavReducer';
 import {authReducer} from './auth/AuthReducer';
 import {loadingReducer} from './loading/LoadingReducer';
 import {heartbeatReducer} from './heartbeat/HeartbeatReducer';
+import {toastReducer} from './toast/ToastReducer';
 
 export default combineReducers({
     sideNavReducer,
     authReducer,
     loadingReducer,
-    heartbeatReducer
+    heartbeatReducer,
+    toastReducer
 });
