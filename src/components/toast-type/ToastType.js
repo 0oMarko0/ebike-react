@@ -44,7 +44,6 @@ export const SuccessToast = (message, title) => {
         hideCloseButton: false,
     });
 
-    console.log('SuccessToast: ', notificationProps());
     return (
         <ToastNotification
             {...notificationProps()}

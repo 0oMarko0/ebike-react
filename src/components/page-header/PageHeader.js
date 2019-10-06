@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 
 export default class PageHeader extends React.Component {
     render() {
-        console.log(this.buildBreadcrumb());
         return (
             <div className="bx--row page-header__banner">
                 <div className="bx--col-lg-16">

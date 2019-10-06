@@ -2,7 +2,6 @@ import React from 'react';
 import './App.scss';
 import {Route, Switch, withRouter} from 'react-router-dom';
 import HomePage from './pages/home/Home';
-import ExamplePage from './pages/example/Example';
 import ContentContainer from './containers/content/ContentContainer';
 import MainHeaderContainer from './containers/header/HeaderContainer';
 import AuthenticationPage from './pages/authentication/Auth';
@@ -19,7 +18,6 @@ class App extends React.Component {
             api.defaults.headers.common['Authorization'] = `bearer ${token}`;
             store.dispatch(setCurrentUser(token));
         } else {
-            console.log('here')
             this.props.history.push(Routes.HOME);
         }
     }
@@ -32,7 +30,6 @@ class App extends React.Component {
                     <Switch>
                         <Route path={Routes.HOME} component={HomePage}/>
                         <Route path={Routes.AUTH} component={AuthenticationPage}/>
-                        <Route path={Routes.EXAMPLE} component={ExamplePage}/>
                     </Switch>
                 </ContentContainer>
             </div>

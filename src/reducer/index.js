@@ -4,4 +4,9 @@ import {authReducer} from './auth/AuthReducer';
 import {loadingReducer} from './loading/LoadingReducer';
 import {toastReducer} from './toast/ToastReducer';
 
-export default combineReducers({sideNavReducer, authReducer, loadingReducer, toastReducer});
+export default combineReducers({
+    sideNavReducer,
+    authReducer,
+    loadingReducer,
+    toastReducer
+});
