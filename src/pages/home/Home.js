@@ -14,10 +14,13 @@ export default class HomePage extends React.Component {
 
     componentDidMount() {
         heartbeat().then((response) => {
+            console.log('REsponse: ', response);
             this.setState({
                 nbOfRestaurants: response.data.nb_restaurants,
                 totalBikePathLength: response.data.total_path_length,
             });
+        }).catch((error) => {
+            console.log('error: ', error);
         });
     }
 
