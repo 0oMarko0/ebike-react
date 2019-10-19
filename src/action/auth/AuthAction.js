@@ -31,7 +31,7 @@ export const signup = ({email, password}, history) => {
             dispatch(pushSuccess('Welcome to Ebike', 'Successfully signup'))
         }).catch((error) => {
             dispatch(loading(false));
-            dispatch(pushError(error));
+            dispatch(pushError(error.message));
         });
     };
 };

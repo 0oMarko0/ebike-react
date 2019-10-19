@@ -12,11 +12,8 @@ class MainSideNav extends React.Component {
                 isPersistent={false}>
                 <SideNavItems>
                     {!this.props.isAuthenticated ? <this.NotAuthenticated/> : <this.Authenticated/>}
-                    <SideNavLink element={Link} to={Routes.HOME}>
-                        Home
-                    </SideNavLink>
-                    <SideNavLink element={Link} to={Routes.EXAMPLE}>
-                        Example
+                    <SideNavLink href="http://ebike-prod.us-east-1.elasticbeanstalk.com/readme/">
+                        Documentation
                     </SideNavLink>
                 </SideNavItems>
             </SideNav>
@@ -25,22 +22,30 @@ class MainSideNav extends React.Component {
 
     NotAuthenticated = () => {
         return (
-            <SideNavLink element={Link} to={Routes.AUTH}>
-                Login
-            </SideNavLink>);
+            <>
+                <SideNavLink element={Link} to={Routes.AUTH}>
+                    Login
+                </SideNavLink>
+            </>
+        );
     };
 
     Authenticated = () => {
         return (
-            <SideNavLink onClick={this.onLogout}>
-                Logout
-            </SideNavLink>);
+            <>
+                <SideNavLink onClick={this.onLogout}>
+                    Logout
+                </SideNavLink>
+                <SideNavLink element={Link} to={Routes.HOME}>
+                    Home
+                </SideNavLink>
+            </>);
     };
 
     onLogout = () => {
         this.props.logout(this.props.history);
         this.props.history.push(Routes.AUTH);
-    }
+    };
 }
 
 export default withRouter(MainSideNav);
