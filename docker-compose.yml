@@ -3,6 +3,6 @@ services:
   ebike:
     build: .
     ports:
-      - 3001:3000
+      - 3001:80
     environment:
       REACT_APP_API_URL: "http://localhost:8080"
