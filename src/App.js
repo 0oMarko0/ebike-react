@@ -18,7 +18,7 @@ class App extends React.Component {
             api.defaults.headers.common['Authorization'] = `bearer ${token}`;
             store.dispatch(setCurrentUser(token));
         } else {
-            this.props.history.push(Routes.HOME);
+            this.props.history.push(Routes.AUTH);
         }
     }
 
@@ -28,8 +28,8 @@ class App extends React.Component {
                 <MainHeaderContainer/>
                 <ContentContainer>
                     <Switch>
-                        <Route path={Routes.HOME} component={HomePage}/>
                         <Route path={Routes.AUTH} component={AuthenticationPage}/>
+                        <Route path={Routes.HOME} component={HomePage}/>
                     </Switch>
                 </ContentContainer>
             </div>
