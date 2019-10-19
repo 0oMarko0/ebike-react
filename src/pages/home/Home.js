@@ -18,6 +18,8 @@ export default class HomePage extends React.Component {
                 nbOfRestaurants: response.data.nb_restaurants,
                 totalBikePathLength: response.data.total_path_length,
             });
+        }).catch((error) => {
+            console.log('error: ', error);
         });
     }
 
