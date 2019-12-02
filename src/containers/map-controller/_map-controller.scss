@@ -1,0 +1,53 @@
+$labelColor: #c6c6c6;
+$margin: 2em;
+$controlWidth: 450px;
+
+.map_controle_title {
+  color: $labelColor;
+  text-align: center;
+}
+
+.map_send_button {
+  display: flex;
+  justify-content: center;
+  margin: $margin;
+}
+
+.map_slider {
+  label {
+    color: $labelColor;
+  }
+
+  margin: $margin;
+}
+
+.map_multiselect {
+  label {
+    color: $labelColor;
+  }
+
+  margin: $margin;
+}
+
+div.bx--loading-overlay {
+  padding-right: $controlWidth;
+}
+
+.map_button {
+  width: 100%;
+}
+
+.map_loading {
+  width: calc(100% - #{$controlWidth});
+}
+
+.map_input_container {
+  width: $controlWidth;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  background: rgba(black, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}

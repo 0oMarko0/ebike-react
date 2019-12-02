@@ -3,9 +3,64 @@ import Map from '../../components/map/Map';
 import {Button, MultiSelect, Slider, Loading} from 'carbon-components-react';
 import {getRestaurantsType} from '../../service/type';
 import {getAJourney, getStartingPoint} from '../../service/journey';
+import {toast} from 'react-toastify';
+import {ErrorToast, toastOption} from '../../components/toast-type/ToastType';
 
 export default class MapController extends React.Component {
+    multiSelectProps = {
+        id: '_multiselect',
+        titleText: 'Restaurants Type',
+        filterable: false,
+        disabled: false,
+        type: 'default',
+        label: 'Restaurants Type',
+        invalid: false,
+        onChange: (e) => this.addToSelectedList(e),
+        listBoxMenuIconTranslationIds:
+            {
+                'close.menu': 'Close menu',
+                'open.menu': 'Open menu',
+                'clear.all': 'Clear all',
+                'clear.selection': 'Clear selection',
+            },
 
+    };
+
+    distanceSlider = {
+        name: 'Distance',
+        inputType: 'number',
+        disabled: false,
+        value: 5000,
+        min: 1000,
+        max: 10000,
+        step: 100,
+        labelText: 'Distance',
+        stepMuliplier: 4,
+        minLabel: '',
+        maxLabel: '',
+    };
+
+    numberOfStops = {
+        name: 'NbStop',
+        inputType: 'number',
+        disabled: false,
+        value: 2,
+        min: 0,
+        max: 5,
+        step: 1,
+        labelText: 'Number Of Stop',
+        stepMuliplier: 2,
+        minLabel: '',
+        maxLabel: '',
+    };
+
+    buttonProps = {
+        className: 'map_button',
+        onClick: e => {
+            e.preventDefault();
+            this.sendForm();
+        },
+    };
     selectedValue = [];
 
     constructor(props) {
@@ -32,70 +87,20 @@ export default class MapController extends React.Component {
         };
 
         getStartingPoint({maximum_length: formValue.maximumLength, type: formValue.type}).then((response) => {
-           Object.assign(formValue, {startingPoint: response.data.starting_point});
+            Object.assign(formValue, {startingPoint: response.data.starting_point});
 
             getAJourney(formValue).then((result) => {
                 this.setState({bikePath: result.data});
                 this.setState({loading: false});
+            }).catch((e) => {
+                toast(ErrorToast(e.message, 'An Error Occurred'), toastOption);
             });
+        }).catch((e) => {
+            toast(ErrorToast(e.message, 'An Error Occurred'), toastOption);
         });
     };
 
     render() {
-        const multiSelectProps = {
-            id: '_multiselect',
-            titleText: 'Restaurants Type',
-            filterable: false,
-            disabled: false,
-            type: 'default',
-            label: 'Restaurants Type',
-            invalid: false,
-            onChange: (e) => this.addToSelectedList(e),
-            listBoxMenuIconTranslationIds:
-                {
-                    'close.menu': 'Close menu',
-                    'open.menu': 'Open menu',
-                    'clear.all': 'Clear all',
-                    'clear.selection': 'Clear selection',
-                },
-
-        };
-
-        const distanceSlider = {
-            name: 'Distance',
-            inputType: 'number',
-            disabled: false,
-            value: 5000,
-            min: 1000,
-            max: 10000,
-            step: 100,
-            labelText: 'Distance',
-            stepMuliplier: 4,
-            minLabel: '',
-            maxLabel: '',
-        };
-
-        const numberOfStops = {
-            name: 'NbStop',
-            inputType: 'number',
-            disabled: false,
-            value: 2,
-            min: 0,
-            max: 5,
-            step: 1,
-            labelText: 'Number Of Stop',
-            stepMuliplier: 2,
-            minLabel: '',
-            maxLabel: '',
-        };
-
-        const buttonProps = {
-            onClick: e => {
-                e.preventDefault();
-                this.sendForm();
-            },
-        };
-
         return (
             <>
                 <div className="map_wrapper">
@@ -104,34 +109,39 @@ export default class MapController extends React.Component {
                 </div>
                 <div className="map_input_container">
                     <h1 className="map_controle_title">Control</h1>
-
-                    <Slider id="_distance" {...distanceSlider} />
-                    <Slider id="_numberOfStop" {...numberOfStops} />
-                    <MultiSelect
-                        {...multiSelectProps}
-                        items={this.state.items}
-                        itemToString={item => (item ? item.text : '')}
-                        placeholder="Cuisine type"
-                        selectionFeedback={(e) => this.addToSelectedList(e)}/>
-                    <div>
-                        <Button {...buttonProps}>
-                            Random Start
+                    <div className="map_slider">
+                        <Slider id="_distance" {...this.distanceSlider} />
+                    </div>
+                    <div className="map_slider">
+                        <Slider id="_numberOfStop" {...this.numberOfStops} />
+                    </div>
+                    <div className="map_multiselect">
+                        <MultiSelect
+                            {...this.multiSelectProps}
+                            items={this.state.items}
+                            itemToString={item => (item ? item.text : '')}
+                            placeholder="Cuisine type"
+                            selectionFeedback={(e) => this.addToSelectedList(e)}/>
+                    </div>
+                    <div className="map_send_button">
+                        <Button {...this.buttonProps}>
+                            Random Bike Journey
                         </Button>
                     </div>
-                    <Button {...buttonProps}>
-                        Random Bike Journey
-                    </Button>
                 </div>
             </>
         );
     }
 
     loading(state) {
-        const props ={
+        const props = {
             active: state,
         };
 
-        return (<Loading {...props} className={'some-class'} />)
+        return (
+            <div className="map_loading">
+                <Loading {...props} className={'some-class'}/>
+            </div>);
     };
 
     addToSelectedList(e) {
