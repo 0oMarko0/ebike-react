@@ -85,7 +85,8 @@ class AuthForm extends React.Component {
                 <h2 className="auth-form__header">Authenticate</h2>
                 <Form>
                     <TextInput {...this.textInputProps}
-                               required
+                        className="test"
+                        required
                     />
                     <TextInput
                         type="password"

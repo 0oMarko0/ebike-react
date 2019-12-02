@@ -9,6 +9,7 @@ import api from './service/api';
 import store from './store';
 import {setCurrentUser} from './action/auth/AuthAction';
 import {Routes} from './utils/Routes';
+import MapPage from './pages/map/Map';
 
 
 class App extends React.Component {
@@ -28,6 +29,7 @@ class App extends React.Component {
                 <MainHeaderContainer/>
                 <ContentContainer>
                     <Switch>
+                        <Route path={Routes.MAP} component={MapPage}/>
                         <Route path={Routes.AUTH} component={AuthenticationPage}/>
                         <Route path={Routes.HOME} component={HomePage}/>
                     </Switch>
