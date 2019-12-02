@@ -39,6 +39,9 @@ class MainSideNav extends React.Component {
                 <SideNavLink element={Link} to={Routes.HOME}>
                     Home
                 </SideNavLink>
+                <SideNavLink element={Link} to={Routes.MAP}>
+                   Map
+                </SideNavLink>
             </>);
     };
 
