@@ -65,7 +65,7 @@ export default class MapController extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {items: [], bikePath: null, loading: false};
+        this.state = {items: [], bikePath: null, loading: false, distance: 0};
     }
 
     componentWillMount() {
@@ -90,6 +90,14 @@ export default class MapController extends React.Component {
             Object.assign(formValue, {startingPoint: response.data.starting_point});
 
             getAJourney(formValue).then((result) => {
+                console.log(result.data);
+                if(result.data.features) {
+                    result.data.features.forEach((feature) => {
+                        if (feature.properties.distance) {
+                            this.setState({distance: feature.properties.distance});
+                        }
+                    })
+                }
                 this.setState({bikePath: result.data});
                 this.setState({loading: false});
             }).catch((e) => {
@@ -101,6 +109,7 @@ export default class MapController extends React.Component {
     };
 
     render() {
+        console.log(this.state.distance);
         return (
             <>
                 <div className="map_wrapper">
@@ -127,6 +136,12 @@ export default class MapController extends React.Component {
                         <Button {...this.buttonProps}>
                             Random Bike Journey
                         </Button>
+                    </div>
+                    <div className="map_distance_container">
+                        <h1 className="map_controle_title">Distance (m)</h1>
+                        <div className="map_distance">
+                            {Math.floor(this.state.distance)}
+                        </div>
                     </div>
                 </div>
             </>
