@@ -65,7 +65,7 @@ export default class MapController extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {items: [], bikePath: null, loading: false, distance: 0};
+        this.state = {items: [], loading: false, distance: 0};
     }
 
     componentWillMount() {
@@ -75,7 +75,7 @@ export default class MapController extends React.Component {
     }
 
     sendForm = () => {
-        this.setState({loading: true});
+        // this.setState({loading: true});
         const formValue = {
             startingPoint: {
                 type: 'Point',
@@ -90,16 +90,15 @@ export default class MapController extends React.Component {
             Object.assign(formValue, {startingPoint: response.data.starting_point});
 
             getAJourney(formValue).then((result) => {
-                console.log(result.data);
-                if(result.data.features) {
+                if (result.data.features) {
                     result.data.features.forEach((feature) => {
                         if (feature.properties.distance) {
                             this.setState({distance: feature.properties.distance});
                         }
-                    })
+                    });
                 }
                 this.setState({bikePath: result.data});
-                this.setState({loading: false});
+                // this.setState({loading: false});
             }).catch((e) => {
                 toast(ErrorToast(e.message, 'An Error Occurred'), toastOption);
             });
@@ -109,7 +108,6 @@ export default class MapController extends React.Component {
     };
 
     render() {
-        console.log(this.state.distance);
         return (
             <>
                 <div className="map_wrapper">
