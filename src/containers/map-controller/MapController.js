@@ -75,7 +75,7 @@ export default class MapController extends React.Component {
     }
 
     sendForm = () => {
-        // this.setState({loading: true});
+        this.setState({loading: true});
         const formValue = {
             startingPoint: {
                 type: 'Point',
@@ -98,7 +98,7 @@ export default class MapController extends React.Component {
                     });
                 }
                 this.setState({bikePath: result.data});
-                // this.setState({loading: false});
+                this.setState({loading: false});
             }).catch((e) => {
                 toast(ErrorToast(e.message, 'An Error Occurred'), toastOption);
             });
