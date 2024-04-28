@@ -3,7 +3,6 @@ import {Header, HeaderMenuButton, HeaderName, SkipToContent} from 'carbon-compon
 import MainSideNav from '../../components/side-nav/MainSideNav';
 import {connect} from 'react-redux';
 import {toggleSideNav} from '../../action/side-nav/SideNavAction';
-import {getAdminState, getAuthenticatedState, logout} from '../../action/auth/AuthAction';
 
 class MainHeaderContainer extends React.Component {
 
@@ -40,7 +39,7 @@ class MainHeaderContainer extends React.Component {
     render() {
         return (
             <>
-                <Header aria-label="IBM Platform Name">
+                <Header aria-label="Ebike">
                     <SkipToContent/>
                     <HeaderMenuButton
                         aria-label="Open menu"
@@ -51,26 +50,17 @@ class MainHeaderContainer extends React.Component {
                     <HeaderName href="#" prefix="E-BIKE">
                         [Platform]
                     </HeaderName>
-                    <MainSideNav logout={this.props.logout} isAuthenticated={this.props.isAuthenticated} isAdmin={this.props.isAdmin} isSideNavExpanded={this.state.isSideNavExpanded}/>
                 </Header>
             </>
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        isAdmin: getAdminState(state),
-        isAuthenticated: getAuthenticatedState(state)
-    }
-};
-
 const mapDispatchToProps = dispatch => ({
-    logout: (history) => dispatch(logout(history)),
     toggleSideNav: (isSideNavExpanded) => dispatch(toggleSideNav(isSideNavExpanded)),
 });
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps)(MainHeaderContainer);
 
