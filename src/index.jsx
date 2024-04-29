@@ -7,14 +7,6 @@ import store from './store';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
-import '../node_modules/core-js/modules/es.array.includes';
-import '../node_modules/core-js/modules/es.array.fill';
-import '../node_modules/core-js/modules/es.string.includes';
-import '../node_modules/core-js/modules/es.string.trim';
-import '../node_modules/core-js/modules/es.object.values';
-
-require('dotenv').config();
-
 
 ReactDOM.render(
     <Provider store={store}>

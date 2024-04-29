@@ -97,8 +97,8 @@ export default class MapController extends React.Component {
                         }
                     });
                 }
-                this.setState({bikePath: result.data});
                 this.setState({loading: false});
+                this.setState({bikePath: result.data});
             }).catch((e) => {
                 toast(ErrorToast(e.message, 'An Error Occurred'), toastOption);
             });

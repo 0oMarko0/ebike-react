@@ -8,7 +8,7 @@
   font-size: $spacing-05;
   font-weight: 400;
   line-height: $spacing-06;
-  letter-spacing: $spacing-05 / 100;
+  letter-spacing: calc($spacing-05/100);
   text-decoration: none;
   outline: none;
 }
